@@ -24,10 +24,11 @@ function createButton(id) {
   button.onclick = function(event) {
     var img = event.target.previousElementSibling;
     var website = prompt('Give me a website');
+    if (!website) return;
     hash[id] = website;
     img.src = 'http://' + website + '/favicon.ico';
     img.onerror = function(event) {
-      event.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png';
+      event.target.src = 'http://bilibili.com/favicon.ico';
     };
     localStorage.setItem('zzz', JSON.stringify(hash));
   }
@@ -39,10 +40,10 @@ function createImage(domain) {
   if (domain) {
     img.src = 'http://' + domain + '/favicon.ico';
   } else {
-    img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png';
+    img.src = 'http://bilibili.com/favicon.ico';
   }
   img.onerror = function(event) {
-    event.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+    event.target.src = 'http://bilibili.com/favicon.ico';
   }
   return img;
 }
@@ -55,7 +56,7 @@ function init() {
     'length': 3
   };
   var hash = {
-    'g': 'google.com', 'h': 'hsbc.com', 'q': 'qq.com', 'w': 'weibo.com', 'e': 'explainshell.com', 'r': 'react.com', 't': 'twitter.com', 'y': 'youtube.com', 'u': 'uniqlo.com' , 'i': 'iqiyi.com', 'o': 'opera.com', 'p': "paypal.com", 'a': 'amazon.com', 's': 'shadowsocks.la', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
+    'q': 'uniqlo.com', 't': 'taobao.com', 'd': 'paypal.com', 'f': 'kaola.com', 'g': 'uniqlo.com', 'h': 'hsbc.com', 'j': 'bilibili.com', 'k': 'kaola.com', 'l': 'huaban.com', 'q': 'qq.com', 'w': 'weibo.com', 'e': 'explainshell.com', 'r': 'bilibili.com', 't': 'twitter.com', 'y': 'youtube.com', 'u': 'uniqlo.com' , 'i': 'iqiyi.com', 'o': 'bilibili.com', 'p': "paypal.com", 'a': 'amazon.com', 's': 'paypal.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn', 'b': 'bilibili.com', 's': 'paypal.com', 'x': 'twitter.com', 'c': 'explainshell.com', 'v': 'explainshell.com', 'n': 'explainshell.com',
   };
   var hashInLocalStorage = getFromLocalStorage('zzz');
   if (hashInLocalStorage) {
@@ -80,7 +81,7 @@ function generateKeyBoard(keys, hash) {
       var button = createButton(row[index2]);
       var img = createImage(hash[row[index2]]);
 
-      var kbd = document.createElement('kbd');
+      var kbd = document.createElement('kbd'); //键盘输入元素
       kbd.className = 'key';
 
       kbd.appendChild(span);
